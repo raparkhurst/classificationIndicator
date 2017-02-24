@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>classificationIndicator</groupId>
   <artifactId>classificationIndicator</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <build>
     <resources>
       <resource>
@@ -13,12 +13,21 @@
     </resources>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.3</version>
+        <executions>
+          <execution />
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.1</version>
         <configuration>
           <archive>
             <manifestEntries>
-              <Implementation-Version>${version}-${timestamp}</Implementation-Version>
+              <Implementation-Version>${version}</Implementation-Version>
+              <Implementation-Version>${buildNumber}</Implementation-Version>
             </manifestEntries>
           </archive>
         </configuration>
@@ -36,7 +45,7 @@
               <transformers>
                 <transformer>
                   <manifestEntries>
-                    <Main-Class>io.digitalsynapse.classificationIndicator.Main</Main-Class>
+                    <Main-Class>io.digitalsynapse.classificationIndicator.ClassificationIndicatorApp</Main-Class>
                   </manifestEntries>
                 </transformer>
               </transformers>
@@ -55,7 +64,7 @@
   </build>
   <properties>
     <timestamp>${maven.build.timestamp}</timestamp>
-    <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+    <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
   </properties>
 </project>
 

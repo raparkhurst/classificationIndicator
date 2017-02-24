@@ -6,13 +6,13 @@
 
     <groupId>classificationIndicator</groupId>
     <artifactId>classificationIndicator</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+
 
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
-        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
     </properties>
-
 
 
     <build>
@@ -26,35 +26,24 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.4</version>
+                <version>1.3</version>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <doCheck>true</doCheck>
-                    <doUpdate>true</doUpdate>
-                </configuration>
             </plugin>
-
-
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Implementation-Version>${version}-${timestamp}</Implementation-Version>
-                            <Implementation-Build>${buildNumber}</Implementation-Build>
+                            <Implementation-Version>${version}</Implementation-Version>
+                            <Implementation-Version>${buildNumber}</Implementation-Version>
                         </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -70,7 +59,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>io.digitalsynapse.classificationIndicator.Main</Main-Class>
+                                        <Main-Class>io.digitalsynapse.classificationIndicator.ClassificationIndicatorApp</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
@@ -78,15 +67,19 @@
                     </execution>
                 </executions>
             </plugin>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+
                 </configuration>
             </plugin>
         </plugins>
+        <!-- <finalName>${project.name}-${version}-${timestamp}</finalName> -->
     </build>
 
     <dependencies>
@@ -94,12 +87,6 @@
             <groupId>commons-cli</groupId>
             <artifactId>commons-cli</artifactId>
             <version>1.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>buildnumber-maven-plugin</artifactId>
-            <version>1.4</version>
         </dependency>
     </dependencies>
 

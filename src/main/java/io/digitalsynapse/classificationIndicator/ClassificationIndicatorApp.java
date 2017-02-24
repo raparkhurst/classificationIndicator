@@ -1,6 +1,7 @@
 package io.digitalsynapse.classificationIndicator;
 
 
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -18,17 +19,13 @@ import java.io.IOException;
 import java.util.*;
 
 
-import io.digitalsynapse.classificationIndicator.CommandLineParse;
-
 
 /**
  * Created by raparkhurst on 1/31/17.
  */
-public class Main extends Application {
+public class ClassificationIndicatorApp extends Application {
 
     public static void main(String[] args) {
-        new CommandLineParse(args).parse();
-
         Application.launch(args);
     }
 
@@ -39,9 +36,10 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         List<String> classificationStringArray = new ArrayList<>();
-
+        
         try {
             classificationStringArray = ClassificationFileReader.Reader("/etc/classification");
+            //classificationStringArray = ClassificationFileReader.Reader(myParameters.getClassificationFileName());
         } catch (IOException e) {
             e.printStackTrace();
         }
